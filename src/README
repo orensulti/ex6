@@ -1,0 +1,152 @@
+kotek
+orens
+
+———————————————————————————————————————
+****
+Please check the last submission of orens , we both submitted but only the last
+submission from orens is the final submission
+our last submission is now after I will finish to write this line - Monday 13:46 13/06
+Thanks!
+****
+———————————————————————————————————————
+
+=============================
+=      File description     =
+=============================
+Main package:
+RegexPatterns.java - a class contains all RegEx.
+SJavac.java - the main class of the program - connects all packages.
+SJavaException.java - the Main Exception class - > all exceptions extends this class.
+Parser package:
+BadTypeConditionParamException.java - a BadCondition exception extends Parser exception.
+ConditionParamNotFoundException.java - a BadCondition exception extends Parser exception.
+IllegalStatementException.java - a BadStatement exception from StatementFactory.
+MethodDeclarationStatement.java - a MethodDeclarationStatement implements Statement.
+MethodInvocationStatement.java - a MethodInvocationStatement implements Statement.
+Parser.java - The PARSER of this project.
+ParserException.java - the main Parsing exception, extends SJava exception.
+Statement.java - an INTERFACE of the statement.
+StatementAfterReturnException.java - a no Return of method exception extends Parser exception.
+StatementFactory.java - the Statement Factory, creates Statements upon a valid RegEx.
+UnbalancedNumOfBracketsException.java - Bad number of brackets exception extends Parser exception.
+VariableDeclarationException.java - a bad Var declaration exception extends parser exception.
+VariableDeclarationOrAssignmentStatement.java - a Variable declaration or assignment statement implements Statement.
+Scopes package:
+CallMethodDoesNotExistException.java - a bad method call Exception extends Scope exception.
+GlobalScope.java - a GlobalScope class - represents the global scope extends Scope.
+IfOrWhileBlock.java - The if or while block scope extends Scope.
+MethodOverLoadingException.java - an Overloading exception extends ScopeException.
+MethodScope.java - the Method scope class represents a method scope extends Scope.
+Scope.java - a class Represents scope inherited by other inner scopes.
+ScopeException.java - the Scope package exception.
+VarAlreadyExistInScope.java - already exist var exception extends ScopeException.
+VariableDoesNotExistException.java - No exist var extends ScopeException.
+Variable package:
+BadVariableNameException.java - bad Var name extends Variable exception.
+BadVariableValueException.java - bad Value to variable, extends Variable exception.
+BooleanVariable.java - a variable object extends abstract Variable class.
+CharVariable.java - a variable object extends abstract Variable class.
+DoubleVariable.java - a variable object extends abstract Variable class.
+FinalVariableDecorator.java - the Final Decorator.
+FinalVariableException.java - a final variable exception extends Variable exception.
+IntegerVariable.java - a variable object extends abstract Variable class.
+MustBeInitializedFinalVariableException.java - a final exception extends VariableException.
+StringVariable.java - a variable object extends abstract Variable class.
+UnchangeableFinalVariableException.java - a final variable cannot be changed exception extends VariableException.
+UninitializedVariableAssignmentException.java - an assignment to an uncivilized variable exception.
+UnsupportedVariableException.java - a not supported Variable exception.
+Variable.java - an Abstract class, all Variable classes extend from them and describe a specific Variable class.
+VariableException.java - the main Variable package exception - describes an exception in the Variable.
+VariableFactory.java - a Factory that creates a variable dependent on it given data.
+VariableTypes.java - a static class, holds DataTypes methods.
+=============================
+=          Design           =
+=============================
+We have managed to obtain an OOP design, we have used the following design principles:
+1. Modularity :
+Separated the exercise problem and implementation into modules.
+Each module has it own Package, it own Exceptions and it own RegEx and classes.
+Each module is independently and implements a specific idea. We connect them all together via the Parsing
+and the SJava main class. Modules are:
+
+a. Variable module:
+A component which represents a Variable in the program, it has it own exceptions and an abstract Variable class,
+which holds a Char,Double,Integer and String variables. this class works independently in representing a Variable,
+with it name , value and data type. it also includes a Factory and a static VariableTypes that helps understanding
+a valid Variable types.
+
+b. Scope module:
+A component which represents a Scope in the program, it includes it own Exceptions and a scope class, which is
+inherited by MethodScope,IfWhileBlock,GlobalScope. all those represent a specific Scope, i.e : a MethodScope.
+and behaves differently according to it scope. This module work independently as representing a scope of a
+java or any other language.
+
+c. Parser module:
+A component which implements a Parser and connects whole program.
+  The parser is indecently and contains two kinds of Parsing:
+  a Specific global parsing, which parses the whole file, and an inside Method parsing method, which parses
+  more specifically a method.
+This component also includes the Statements, which are one of the main objects in this program, the Statements are
+initiated by a Statement factory, and operate the program depends on each Statement case, each Statement represents
+a case in the program: i.e: a Method Decleration case - will be operated by it MethodDeclaration Statement.
+
+d. Methods module:
+A component which represents a Method in the program, each method is either declared or called.
+This module works alone as the Method class has it own methods, and it own Exceptions.
+
+e. Main module:
+A component which manages the program, it calls the Parser and returns the desired value,
+0,1,2 depends on the Statement handled after.
+
+2. Factory :
+The factory design pattern is used twice in the program, we initiate each Statement dependent on it RegEx, which is
+handled in a specific factory. Second - we create Variables dependent on their Factory and their data given,
+i.e : a Char is read by Parser ->> call factory with 'char' details and create a charVariable.
+
+3. Single-tone :
+We have a Single-tone Global Scope instance, which represents the one and only Global Scope in the program.
+This program has only one Global scope, as there are no more than one Global scopes in a Java language.
+
+4. Decoration:
+We have used a decorator for the FINAL variable option. as the final behaves differently than the normal Variable
+Objects, thus it holds a Variable as a data-member and his methods behaves differently.
+
+
+=============================
+=  Implementation details   =
+=============================
+Scope idea:
+We have designed the program by representing each Scope ( {} ) of the Java programming language as an Object.
+We have a Scope inherited by GlobalScope, MethodScope and IfOrWhile scope - each represents a scope in the pragma
+and behaves differently according to it methods.
+Parser idea:
+The parser contains two Parsing methods: 1. by reading the Global scope - and creating Methods, Variables according
+to it - and in it scope. 2. by reading Method scope - which initializes and creates statements, methods and variables
+according to the given inner method scope. thus we can understand data from a inner-method-scope which is initialized
+in a bigger scope (Global scope).
+Exceptions idea:
+We have for each package it own exceptions, 1. a 'main Package exception' which all inner exceptions extends.
+2. all 'main package exceptions' extends SJava exception and being catched by the SJava main exception.
+
+---ANSWERS TO QUESTIONS---:
+1. Error handling:
+We have handled errors in the program by keeping an Exception in each package that will represent the specific error,
+further more - we throw exceptions mainly if Line read by parser does not fit to a specific RegEx. thus we catch
+most of the Errors by RegEx.
+2. Modifying to new types of variables:
+As by the design of having each module working independently. We can just edit the Variable RegEx and the
+ Variable DataTypes, which will now contain a Float as a legal DataType and as a legal RegEx,
+  without changing any other of the packages of the program.
+3. implementing Switch statements and Arrays:
+For being able to handle those situations, we would add ArrayDecorator.java as a class to Variable module,
+as it will behave differently from the other Variables, we will not need to change any code - but just change the way
+the Array extends from abstract Variable functions will work - as they will operate differently.
+for Switch - we will just add a Switch statement, and add a Switch RegEx to the Statements factory. This statement
+will run it own checks on the Switch txt line given and we will just need to implement the HandleStatement method.
+
+4. RegEx:
+We have created a RegexPatterns.java which holds both Legal RegEx as static's and both Patterns.
+We not to re-write again new RegEx for each desired RegEx but using an existing ones, as saving them as static
+Strings - and using the concatenates (+) operator. We have used ReGEx Greedy and Lazy techniques and operators,
+Capturing groups (for gathering specific data) and the Matcher matches() & find() methods.
+
